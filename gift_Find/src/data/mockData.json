@@ -1,0 +1,15 @@
+[
+    {
+      "id": "1",
+      "name": "Wireless Bluetooth Headphones",
+      "price": 59.99,
+      "description": "High-quality wireless headphones with noise cancellation."
+    },
+    {
+      "id": "2",
+      "name": "Smartwatch Fitness Tracker",
+      "price": 29.99,
+      "description": "Waterproof smartwatch with heart rate and sleep monitor."
+    }
+  ]
+  
