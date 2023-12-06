@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import '../styles/FilterPanel.css';
-import PriceRangeFilter from './PriceRangeFilter';
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
