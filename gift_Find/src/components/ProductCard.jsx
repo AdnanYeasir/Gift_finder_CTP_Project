@@ -1,6 +1,6 @@
 // src/components/ProductCard.jsx
 import React from 'react';
-//import '../styles/ProductCard.css'; // Make sure you have corresponding CSS for styling
+import '../styles/ProductCard.css'; // Make sure you have corresponding CSS for styling
 
 const ProductCard = ({ product }) => {
   return (

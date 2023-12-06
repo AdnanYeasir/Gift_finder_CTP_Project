@@ -1,25 +1,40 @@
 /* src/components/styles/SearchBar.css */
+h1 {
+  font-weight: 500;
+  margin: 10px;
+  padding: 30px;
+}
+
 .search-bar {
     display: flex;
     justify-content: center;
-    margin: 1rem;
+    align-items: center;
+    /* margin: 1rem; */
   }
   
   .search-input {
-    width: 100%;
+    width: 40%;
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 18px;
+    background-color: white;
+    border-radius: 20px;
+    border-color: var(--coral);
+    color: var(--brown);
+    margin: 1rem;
+    font-family: Jost;
   }
   
   .search-button {
-    padding: 0.5rem 1rem;
-    background-color: #ff4500;
+    padding: 0.25rem 1rem;
+    background-color: var(--coral);
     color: white;
     border: none;
     cursor: pointer;
+    height: 50px;
+    font-size: 18px;
   }
   
   .search-button:hover {
-    background-color: #e03e00;
+    background-color: var(--dark-coral);
   }
   
