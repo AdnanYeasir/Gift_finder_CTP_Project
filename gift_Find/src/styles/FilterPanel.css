@@ -2,23 +2,35 @@
 .filter-panel {
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    /* border: 1px solid var(--coral); */
+    background-color: white;
+    /* border-radius: 4px; */
+    font-size: 18px;
+  }
+
+  h1 {
+    margin: 0px;
+    font-weight: 500;
+  }
+
+  .price-input {
+    background-color: white;
+    border-color: var(--coral);
+    font-size: 18px;
+    font-family: Jost;
+    margin: 1rem;
+    width: 20%;
   }
   
-  .filter-group {
-    margin-bottom: 1rem;
-  }
-  
-  .apply-filters {
+  .apply-filters-button {
     padding: 0.5rem 1rem;
-    background-color: #ff4500;
+    background-color: var(--coral);
     color: white;
     border: none;
     cursor: pointer;
   }
   
-  .apply-filters:hover {
-    background-color: #e03e00;
+  .apply-filters-button:hover {
+    background-color: var(--dark-coral);
   }
   

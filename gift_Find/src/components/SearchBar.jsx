@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../styles/SearchBar.css';
 import '../styles/FilterPanel.css';
 
 function SearchBar() {
@@ -63,17 +64,20 @@ function SearchBar() {
   };
 
   return (
-    <div>
+    <div className='home-page'>
       <h1>Search for Products</h1>
-      <input
-        type="text"
-        value={searchQuery}
-        onChange={(e) => setSearchQuery(e.target.value)}
-        placeholder="Enter your search term here"
-      />
-      <button onClick={search} className="apply-filters">
-        Search
-      </button>
+      <div className='search-bar'>
+        <input
+          type="text"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Enter your search term here"
+          className="search-input"
+        />
+        <button onClick={search} className="search-button">
+          Search
+        </button>
+      </div>
 
       <div id="results">
         <div className="column1">

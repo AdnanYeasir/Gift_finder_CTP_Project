@@ -17,6 +17,7 @@ function FilterPanel({ onApplyFilters }) {
   return (
     <div className="filter-panel">
       <form onSubmit={handleSubmit}>
+        <h2>Filters</h2>
         <div className="filter-group">
           <label htmlFor="price">Price under:</label>
           <input
@@ -25,10 +26,11 @@ function FilterPanel({ onApplyFilters }) {
             value={price}
             onChange={handlePriceChange}
             placeholder="Enter max price"
+            className="price-input"
           />
         </div>
         {/* You can add more filter options here */}
-        <button type="submit" className="apply-filters">
+        <button type="submit" className="apply-filters-button">
           Apply Filters
         </button>
       </form>
