@@ -13,12 +13,12 @@ function SearchBar() {
       // Create three separate promises for eBay, Home Depot, and Target API requests
       const ebayPromise = fetch(`/api?q=${encodeURIComponent(searchQuery)}`);
       const homeDepotPromise = fetch(
-        `https://api.bigboxapi.com/request?api_key=53B6500E1E5144D3B3BE8D223186394C&search_term=${encodeURIComponent(
+        `https://api.bigboxapi.com/request?api_key=6BC9CDB08EDA449FB1A37AC0E8C53D30&search_term=${encodeURIComponent(
           searchQuery
         )}&category_id=5zja3&type=search`
       );
       const targetPromise = fetch(
-        `https://api.redcircleapi.com/request?api_key=28CB512187E345228012A4CE1849463F&search_term=${encodeURIComponent(
+        `https://api.redcircleapi.com/request?api_key=B110F2A32F8148889BF49EC20825B2CE&search_term=${encodeURIComponent(
           searchQuery
         )}&category_id=5zja3&type=search`
       );
