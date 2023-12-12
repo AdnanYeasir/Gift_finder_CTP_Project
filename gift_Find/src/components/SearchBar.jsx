@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import '../styles/SearchBar.css';
 import '../styles/FilterPanel.css';
+import ProductCard from './ProductCard';
+import BookmarkUnfilled from "../assets/bookmark_unfilled.png";
 
 function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -84,30 +86,28 @@ function SearchBar() {
           Search
         </button>
         <div className="sort-menu">
-          <label htmlFor="sortOrder">Sort by Price:</label>
-        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
-          <option value="">Select</option>
-          <option value="asc">Low to High</option>
-          <option value="desc">High to Low</option>
-        </select>
-      </div>
+          <label htmlFor="sortOrder">Sort by Price: </label>
+          <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+            <option value="">Select</option>
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
+        </div>
       </div>
 
       <div id="results">
         <div className="column1">
-          <h2>eBay Results</h2>
+          <h2 className='results-title'>eBay Results</h2>
           {ebayResults.map((item, index) => (
             <div key={index} className="item">
-              <div className="item-details">
-                <img src={item.image.imageUrl} alt={item.title} />
-                <div>
-                  <h3>{item.title}</h3>
-                  <p className="price">${item.price.value} {item.price.currency}</p>
-                  <a href={item.itemWebUrl} target="_blank" rel="noopener noreferrer">
-                    View on eBay
-                  </a>
-                </div>
+              <div className='item-header'>
+                <a href={item.itemWebUrl} target="_blank" rel="noopener noreferrer" className='title-link'>
+                      {item.title}
+                    </a>
+                  <img src={BookmarkUnfilled} alt='not saved' className='save-icon'/>
               </div>
+              <img src={item.image.imageUrl} alt={item.title} className='image'/>
+              <p className="price">${item.price.value} {item.price.currency}</p>
             </div>
           ))}
         </div>
@@ -116,17 +116,27 @@ function SearchBar() {
           <h2>Home Depot Results</h2>
           {homeDepotResults.map((item, index) => (
             <div key={index} className="item">
-              <div className="item-details">
-                <img src={item.product.primary_image} alt={item.title} width="225" height="225" />
-                <div>
-                  <h3>{item.product.title}</h3>
-                  <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    View on Home Depot
-                  </a>
-                </div>
+              <div className='item-header'>
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className='title-link'>
+                      {item.product.title}
+                    </a>
+                  <img src={BookmarkUnfilled} alt='not saved' className='save-icon'/>
               </div>
+              <img src={item.product.primary_image} alt={item.title} width="225" height="225" className='image'/>
+              <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
             </div>
+            // <div key={index} className="item">
+            //   <div className="item-details">
+            //     <img src={item.product.primary_image} alt={item.title} width="225" height="225" />
+            //     <div>
+            //       <h3>{item.product.title}</h3>
+            //       <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
+            //       <a href={item.link} target="_blank" rel="noopener noreferrer">
+            //         View on Home Depot
+            //       </a>
+            //     </div>
+            //   </div>
+            // </div>
           ))}
         </div>
 
@@ -134,18 +144,28 @@ function SearchBar() {
           <h2>Target Results</h2>
           {targetResults.map((item, index) => (
             <div key={index} className="item">
-              <div className="item-details">
-                {/* Add image source for Target items */}
-                <img src={item.product.main_image} alt={item.title} width="225" height="225" />
-                <div>
-                  <h3>{item.product.title}</h3>
-                  <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
-                  <a href={item.link} target="_blank" rel="noopener noreferrer">
-                    View on Target
+            <div className='item-header'>
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className='title-link'>
+                    {item.product.title}
                   </a>
-                </div>
-              </div>
+                <img src={BookmarkUnfilled} alt='not saved' className='save-icon'/>
             </div>
+            <img src={item.product.main_image} alt={item.title} width="225" height="225" className='image'/>
+            <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
+          </div>
+            // <div key={index} className="item">
+            //   <div className="item-details">
+            //     {/* Add image source for Target items */}
+            //     <img src={item.product.main_image} alt={item.title} width="225" height="225" />
+            //     <div>
+            //       <h3>{item.product.title}</h3>
+            //       <p className="price">${item.offers.primary.price} {item.offers.primary.currency}</p>
+            //       <a href={item.link} target="_blank" rel="noopener noreferrer">
+            //         View on Target
+            //       </a>
+            //     </div>
+            //   </div>
+            // </div>
           ))}
         </div>
       </div>
