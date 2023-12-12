@@ -6,64 +6,70 @@ function SearchBar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [ebayResults, setEbayResults] = useState([]);
   const [homeDepotResults, setHomeDepotResults] = useState([]);
-  const [targetResults, setTargetResults] = useState([]); // Added state for Target results
+  const [targetResults, setTargetResults] = useState([]);
 
-  const search = async () => {
-    try {
-      // Create three separate promises for eBay, Home Depot, and Target API requests
-      const ebayPromise = fetch(`/api?q=${encodeURIComponent(searchQuery)}`);
-      const homeDepotPromise = fetch(
-        `https://api.bigboxapi.com/request?api_key=6BC9CDB08EDA449FB1A37AC0E8C53D30&search_term=${encodeURIComponent(
-          searchQuery
-        )}&category_id=5zja3&type=search`
-      );
-      const targetPromise = fetch(
-        `https://api.redcircleapi.com/request?api_key=B110F2A32F8148889BF49EC20825B2CE&search_term=${encodeURIComponent(
-          searchQuery
-        )}&category_id=5zja3&type=search`
-      );
+  
+  const [sortOrder, setSortOrder] = useState('');
+  const sortResults = (order) => {
+    const sortFunction = (a, b) => {
+      // Replace 'price.value' and 'offers.primary.price' with your actual price path
+      let priceA = a.price ? a.price.value : a.offers.primary.price;
+      let priceB = b.price ? b.price.value : b.offers.primary.price;
 
-      // Use Promise.all to make parallel requests
-      const [ebayResponse, homeDepotResponse, targetResponse] = await Promise.all([
-        ebayPromise,
-        homeDepotPromise,
-        targetPromise, // Added Target API promise
-      ]);
+      return order === 'asc' ? priceA - priceB : priceB - priceA;
+    };
 
-      // Check if all responses are ok
-      if (!ebayResponse.ok) {
-        throw new Error(`eBay API error! status: ${ebayResponse.status}`);
-      }
-
-      if (!homeDepotResponse.ok) {
-        throw new Error(`Home Depot API error! status: ${homeDepotResponse.status}`);
-      }
-
-      if (!targetResponse.ok) {
-        throw new Error(`Target API error! status: ${targetResponse.status}`);
-      }
-
-      // Parse the responses
-      const ebayData = await ebayResponse.json();
-      const homeDepotData = await homeDepotResponse.json();
-      const targetData = await targetResponse.json(); // Added Target API data
-
-      // Log the responses for debugging
-      console.log('eBay API Response:', ebayData);
-      console.log('Home Depot API Response:', homeDepotData);
-      console.log('Target API Response:', targetData); // Log Target API data
-
-      // Set the search results separately for eBay, Home Depot, and Target
-      setEbayResults(ebayData.itemSummaries);
-      setHomeDepotResults(homeDepotData.search_results);
-      setTargetResults(targetData.search_results); // Set Target results
-    } catch (error) {
-      console.error('Failed to fetch: ', error);
-      // Handle error
-    }
+    setEbayResults([...ebayResults].sort(sortFunction));
+    setHomeDepotResults([...homeDepotResults].sort(sortFunction));
+    setTargetResults([...targetResults].sort(sortFunction));
   };
 
-  return (
+  const handleSortChange = (event) => {
+    setSortOrder(event.target.value);
+    sortResults(event.target.value);
+  };
+
+  const search = async () => {
+    const ebayPromise = fetch(`/api?q=${encodeURIComponent(searchQuery)}`);
+    const homeDepotPromise = fetch(
+      `https://api.bigboxapi.com/request?api_key=53870F884328437FAB50C49DA30856A6&search_term=${encodeURIComponent(
+        searchQuery
+      )}&category_id=5zja3&type=search`
+    );
+    const targetPromise = fetch(
+      `https://api.redcircleapi.com/request?api_key=A5E3D9713DD2411999C317AAB757481E&search_term=${encodeURIComponent(
+        searchQuery
+      )}&category_id=5zja3&type=search`
+    );
+
+
+
+    const results = await Promise.allSettled([ebayPromise, homeDepotPromise, targetPromise]);
+
+    results.forEach(async (result, index) => {
+      if (result.status === 'fulfilled' && result.value.ok) {
+        try {
+          const data = await result.value.json();
+          if (index === 0) {
+            setEbayResults(data.itemSummaries);
+            console.log('eBay API Response:', data);
+          } else if (index === 1) {
+            setHomeDepotResults(data.search_results);
+            console.log('Home Depot API Response:', data);
+          } else if (index === 2) {
+            setTargetResults(data.search_results);
+            console.log('Target API Response:', data);
+          }
+        } catch (error) {
+          console.error('Error parsing data:', error);
+        }
+      } else {
+        console.error(`API request ${index + 1} failed:`, result.reason);
+      }
+    });
+  };
+
+    return (
     <div className='home-page'>
       <h1>Search for Products</h1>
       <div className='search-bar'>
@@ -77,6 +83,14 @@ function SearchBar() {
         <button onClick={search} className="search-button">
           Search
         </button>
+        <div className="sort-menu">
+          <label htmlFor="sortOrder">Sort by Price:</label>
+        <select id="sortOrder" value={sortOrder} onChange={handleSortChange}>
+          <option value="">Select</option>
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
+        </select>
+      </div>
       </div>
 
       <div id="results">
