@@ -113,7 +113,7 @@ function SearchBar() {
         </div>
 
         <div className="column1">
-          <h2>Home Depot Results</h2>
+          <h2 className='results-title'>Home Depot Results</h2>
           {homeDepotResults.map((item, index) => (
             <div key={index} className="item">
               <div className='item-header'>
@@ -141,7 +141,7 @@ function SearchBar() {
         </div>
 
         <div className="column1">
-          <h2>Target Results</h2>
+          <h2 className='results-title'>Target Results</h2>
           {targetResults.map((item, index) => (
             <div key={index} className="item">
             <div className='item-header'>
