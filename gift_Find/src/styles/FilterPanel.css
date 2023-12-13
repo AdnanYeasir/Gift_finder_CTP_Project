@@ -13,8 +13,13 @@
     font-weight: 500;
   }
 
+  h2 {
+    margin: 0;
+  }
+
   .price-input {
     background-color: white;
+    color: var(--brown);
     border-color: var(--coral);
     font-size: 18px;
     font-family: Jost;
