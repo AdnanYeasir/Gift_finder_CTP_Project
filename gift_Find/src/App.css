@@ -22,23 +22,18 @@ body {
   --coral: #E36E51;
   --dark-coral: #DD502C;
   --brown: #4C3526;
+  --navbar-height: 2rem;
 
   background-color: var(--beige);
   color: var(--brown);
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
+/* 
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
-}
+} */
 
 @keyframes logo-spin {
   from {
@@ -65,4 +60,18 @@ body {
 
 .App {
   font-family: Jost;
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeInUp {
+	0% { opacity: 0; transform: translateY(5rem); }
+	100% { opacity: 1; transform: translateY(0rem); }
 }

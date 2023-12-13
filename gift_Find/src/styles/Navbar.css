@@ -4,15 +4,30 @@
   align-items: center;
   background-color: #E36E51;
   padding: 0.5rem 1rem;
+  height: 2rem;
   width: 100%;
   position:fixed;
   top: 0;
   left: 0;
 }
+
 .navbar-brand{
+    display: flex;
     font-size: 1.5rem;
     color: white;
+    align-items: center;
+    justify-content: center;
+
 }
+
+.logo {
+    height: 1.5rem;
+    padding-left: 1rem;
+
+    /* from App.css */
+    will-change: filter;
+    transition: filter 300ms;
+  }
 
 .navbar-links{
     display: flex;

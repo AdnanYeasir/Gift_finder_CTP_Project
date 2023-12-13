@@ -1,4 +1,10 @@
 /* src/components/styles/SearchBar.css */
+
+#root {
+  height: calc(100% - var(--navbar-height));
+  background-color: var(--beige);
+}
+
 h1 {
   font-weight: 500;
   margin: 10px;
@@ -42,8 +48,8 @@ h1 {
   background-color: white;
   padding: 1rem;
   margin: 1rem;
-  /* border-color: var(--coral);
-  border-width: 2px; */
+  border-color: var(--coral);
+  border-width: 1rem;
 }
 
 #sortOrder {
@@ -77,6 +83,8 @@ h1 {
   margin-right: 0.75rem;
   border-radius: 5px;
   height: auto;
+  animation: fadeInUp 1s ease;
+
   /* max-height: 500px; */
 }
   
